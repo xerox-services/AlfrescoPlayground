@@ -1,0 +1,41 @@
+### Maven template
+target/
+pom.xml.tag
+pom.xml.releaseBackup
+pom.xml.versionsBackup
+pom.xml.next
+release.properties
+dependency-reduced-pom.xml
+buildNumber.properties
+.mvn/timing.properties
+
+# IntelliJ
+.idea/
+*.iml
+*.ipr
+*.iws
+/out/
+.idea_modules/
+atlassian-ide-plugin.xml
+
+# Ignore Eclipse
+.project
+.classpath
+.settings/
+bin/
+
+# Alfresco temp / build files
+/repo/overlays/
+/share/overlays/
+alfresco*.log*
+solr.log*
+alf_data_dev/contentstore
+alf_data_dev/contentstore.deleted
+alf_data_dev/h2_data
+alf_data_dev/lucene-indexes
+alf_data_dev/solr4
+alf_data_dev/preprocessor-data
+citeweb-ui/logs
+preprocessor/logs
+citeweb-ui/src/main/webapp/WEB-INF/lib
+citeweb-ui/src/main/webapp/WEB-INF/classes

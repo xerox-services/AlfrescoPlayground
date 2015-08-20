@@ -21,12 +21,20 @@
        For more available properties see the alfresco-sdk-parent POM.
        -->
     <properties>
+        <!-- Relative paths in Maven gets tricky. Declare a property that contains the true root directory for later use -->
+        <true.project.root>${project.basedir}</true.project.root>
+
         <!-- The following are default values for data location, Alfresco Community version, and Records Management Module version.
              Uncomment if you need to change (Note. current default version for Enterprise edition is 5.0.1) 
 		  <alfresco.rm.version>2.3</alfresco.rm.version>	 
 			 -->
-          <alfresco.version>5.0.1</alfresco.version>
-          <alfresco.data.location>alf_data_dev</alfresco.data.location> -->
+        <alfresco.version>5.0.1</alfresco.version>
+
+        <!-- With the true root trick we can launch from either top level or a sub-module and get the same data dir -->
+        <alfresco.data.location>${true.project.root}/alf_data_dev</alfresco.data.location>
+
+        <!-- Overwrite this from parent pom which starts with a goofy ./ which can break some paths -->
+        <alfresco.db.url>jdbc:h2:${alfresco.data.location}/h2_data/${alfresco.db.name};${alfresco.db.params}</alfresco.db.url>
 
         <!-- This control the root logging level for all apps uncomment and change, defaults to WARN
             <app.log.root.level>WARN</app.log.root.level>

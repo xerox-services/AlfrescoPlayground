@@ -24,6 +24,12 @@
         <version>1.0-SNAPSHOT</version>
     </parent>
 
+    <properties>
+        <!-- Relative paths in Maven gets tricky. Declare a property that contains the true root directory for later use -->
+        <true.project.root>${project.parent.basedir}</true.project.root>
+        <!-- This allows launching via Maven from this sub-module but still putting the data dir at project top level -->
+    </properties>
+
     <dependencies>
         <dependency>
             <groupId>${alfresco.groupId}</groupId>
@@ -69,6 +75,10 @@
                         | explicitly mention it in the overlay section.
                         | NOTE: First-win resource strategy is used by the WAR plugin
                          -->
+
+                    <!-- This suppresses a pointless error in Eclipse -->
+                    <failOnMissingWebXml>false</failOnMissingWebXml>
+
                     <overlays>
                         <!-- Current project customizations. This is normally empty, since customizations come from the AMPs -->
                         <overlay/>

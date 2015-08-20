@@ -11,9 +11,11 @@
         <artifactId>citeweb</artifactId>
         <version>1.0-SNAPSHOT</version>
     </parent>
-    
+
     <properties>
-        <!-- Property overrides are mostly done in parent pom -->
+        <!-- Relative paths in Maven gets tricky. Declare a property that contains the true root directory for later use -->
+        <true.project.root>${project.parent.basedir}</true.project.root>
+        <!-- This allows launching via Maven from this sub-module but still putting the data dir at project top level -->
     </properties>
 
     <!-- Following dependencies are needed for compiling Java code in src/main/java;
