@@ -25,6 +25,18 @@
         <namespace uri="http://www.mycompany.com/model/content/1.0" prefix="my"/>
     </namespaces>
 
+    <constraints>
+        <constraint name="my:productListConstraint" type="LIST">
+            <parameter name="allowedValues">
+                <list>
+                    <value>Foobar Widget</value>
+                    <value>Flux Capacitor</value>
+                    <value>Big Bold App</value>
+                </list>
+            </parameter>
+        </constraint>
+    </constraints>
+
     <types>
         <!--  Enterprise-wide generic document type -->
         <type name="my:doc">
@@ -34,6 +46,15 @@
         <type name="my:marketingDoc">
             <title>MyCompany Marketing Document</title>
             <parent>my:doc</parent>
+            <properties>
+                <property name="my:product">
+                    <type>d:text</type>
+                    <multiple>true</multiple>
+                    <constraints>
+                        <constraint ref="my:productListConstraint" />
+                    </constraints>
+                </property>
+            </properties>
         </type>
         <type name="my:whitepaper">
             <title>MyCompany Whitepaper</title>
