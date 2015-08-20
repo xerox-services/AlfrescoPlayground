@@ -25,7 +25,7 @@
             <!-- TODO: figure out a way to define these properties in a parent POM, they are now also duplicated
                        in the solr-config/pom.xml -->
             <properties>
-                <alfresco.solr.dir>${project.parent.basedir}/${alfresco.data.location}/solr4</alfresco.solr.dir>
+                <alfresco.solr.dir>${alfresco.data.location}/solr4</alfresco.solr.dir>
                 <alfresco.solr.home.dir>${alfresco.solr.dir}/config</alfresco.solr.home.dir>
             </properties>
 
@@ -144,7 +144,7 @@
             </properties>
             <build>
                 <plugins>
-                    <!-- Need to unpack the tests becuase of Jiras: -->
+                    <!-- Need to unpack the tests because of Jiras: -->
                     <!-- https://jira.codehaus.org/browse/SUREFIRE-997 -->
                     <!-- https://jira.codehaus.org/browse/SUREFIRE-1024 -->
                     <!-- Workaround for classloading issue in share-po (need to unpack it)-->
