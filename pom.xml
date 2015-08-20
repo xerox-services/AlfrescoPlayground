@@ -22,9 +22,10 @@
        -->
     <properties>
         <!-- The following are default values for data location, Alfresco Community version, and Records Management Module version.
-             Uncomment if you need to change (Note. current default version for Enterprise edition is 5.0.1)
-          <alfresco.version>5.0.d</alfresco.version>
-          <alfresco.rm.version>2.3</alfresco.rm.version>
+             Uncomment if you need to change (Note. current default version for Enterprise edition is 5.0.1) 
+		  <alfresco.rm.version>2.3</alfresco.rm.version>	 
+			 -->
+          <alfresco.version>5.0.1</alfresco.version>
           <alfresco.data.location>alf_data_dev</alfresco.data.location> -->
 
         <!-- This control the root logging level for all apps uncomment and change, defaults to WARN
