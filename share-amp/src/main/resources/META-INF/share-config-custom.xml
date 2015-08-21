@@ -97,6 +97,10 @@
                 <aspect name="audio:audio" />
                 <aspect name="cm:indexControl" />
                 <aspect name="dp:restrictable" />
+
+                <!-- custom aspects -->
+                <aspect name="my:publishToWeb" />
+                <aspect name="my:clientRelated" />
             </visible>
 
             <!-- Aspects that a user can add. Same as "visible" if left empty -->
