@@ -10,5 +10,68 @@
      -->
 <alfresco-config>
 
+    <!-- Form customization for whitepaper -->
+
+    <config evaluator="model-type" condition="my:whitepaper">
+        <forms>
+            <form>
+                <field-visibility>
+                    <show id="cm:name" />
+                    <show id="my:product" />
+                    <show id="cm:title" force="true" />
+                    <show id="cm:description" force="true" />
+                </field-visibility>
+            </form>
+        </forms>
+    </config>
+
+
+    <config evaluator="node-type" condition="my:whitepaper">
+        <forms>
+            <form>
+                <field-visibility>
+                    <show id="cm:name" />
+                    <show id="my:product" />
+                    <show id="cm:title" force="true" />
+                    <show id="cm:description" force="true" />
+                </field-visibility>
+            </form>
+        </forms>
+    </config>
+
+    <!-- End of Form customization for whitepaper -->
+
+
+    <!-- Document Library config section -->
+    <config evaluator="string-compare" condition="DocumentLibrary" replace="true">
+
+        <!--
+           Used by the "Change Type" action
+
+           Define valid subtypes using the following example:
+              <type name="cm:content">
+                 <subtype name="cm:mysubtype" />
+              </type>
+
+           Remember to also add the relevant i18n string(s):
+              cm_mysubtype=My SubType
+           Into share-amp/src/main/amp/config/alfresco/web-extension/messages/custom.properties
+        -->
+        <types>
+            <type name="cm:content">
+                <!-- Custom sub-type added for whitepapers -->
+                <subtype name="my:whitepaper"/>
+                <subtype name="my:doc"/>
+            </type>
+
+            <type name="cm:folder">
+            </type>
+
+            <type name="trx:transferTarget">
+                <subtype name="trx:fileTransferTarget"/>
+            </type>
+        </types>
+
+    </config>
 
 </alfresco-config>
