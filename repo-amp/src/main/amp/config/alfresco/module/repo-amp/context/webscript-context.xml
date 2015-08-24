@@ -1,5 +1,6 @@
 <?xml version='1.0' encoding='UTF-8'?>
-<!DOCTYPE beans PUBLIC '-//SPRING//DTD BEAN//EN' 'http://www.springframework.org/dtd/spring-beans.dtd'>
+<!DOCTYPE beans PUBLIC '-//SPRING//DTD BEAN//EN'
+        'http://www.springframework.org/dtd/spring-beans.dtd'>
 <!--
 	Licensed to the Apache Software Foundation (ASF) under one or more
 	contributor license agreements.  See the NOTICE file distributed with
@@ -17,10 +18,10 @@
 	limitations under the License.
 -->
 <beans>
-	<!-- These beans may connect webscripts to some backing Java code (probably among other stuff).
-					Note how the tutorial modeltest script doesn't have an entry - it is self-contained. -->
-	<bean id="webscript.helloworld.get"
-		  class="org.example.playground.demoamp.HelloWorldWebScript"
-		  parent="webscript">
-	</bean>
+    <!-- These beans may connect webscripts to some backing Java code (probably among other stuff).
+            Note how the tutorial modeltest script doesn't have an entry - it is self-contained. -->
+    <bean id="webscript.helloworld.get"
+          class="org.example.playground.demoamp.HelloWorldWebScript"
+          parent="webscript">
+    </bean>
 </beans>

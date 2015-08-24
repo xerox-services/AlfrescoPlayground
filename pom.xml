@@ -1,11 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <groupId>org.example</groupId>
     <artifactId>playground</artifactId>
     <version>1.0-SNAPSHOT</version>
     <name>Alfresco Quickstart</name>
-    <description>This All-in-One project allows to manage all the components involved in Alfresco development (Repo, Share, Solr4, AMPs) in one project
+    <description>This All-in-One project allows to manage all the components involved in Alfresco
+        development (Repo, Share, Solr4, AMPs) in one project
     </description>
     <packaging>pom</packaging>
 
@@ -34,7 +37,9 @@
         <alfresco.data.location>${true.project.root}/alf_data_dev</alfresco.data.location>
 
         <!-- Overwrite this from parent pom which starts with a goofy ./ which can break some paths -->
-        <alfresco.db.url>jdbc:h2:${alfresco.data.location}/h2_data/${alfresco.db.name};${alfresco.db.params}</alfresco.db.url>
+        <alfresco.db.url>
+            jdbc:h2:${alfresco.data.location}/h2_data/${alfresco.db.name};${alfresco.db.params}
+        </alfresco.db.url>
 
         <!-- This control the root logging level for all apps uncomment and change, defaults to WARN
             <app.log.root.level>WARN</app.log.root.level>
@@ -95,12 +100,12 @@
             </properties>
         </profile>
     </profiles>
-  <modules>
-    <module>repo-amp</module>
-    <module>share-amp</module>
-    <module>repo</module>
-    <module>solr-config</module>
-    <module>share</module>
-    <module>runner</module>
-  </modules>
+    <modules>
+        <module>repo-amp</module>
+        <module>share-amp</module>
+        <module>repo</module>
+        <module>solr-config</module>
+        <module>share</module>
+        <module>runner</module>
+    </modules>
 </project>
