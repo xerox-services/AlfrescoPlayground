@@ -75,6 +75,10 @@
             <title>MyCompany Whitepaper</title>
             <parent>myc:marketingDoc</parent>
         </type>
+        <type name="myc:whitepaperCatalogue">
+            <title>MyCompany Whitepaper Catalogue</title>
+            <parent>myc:marketingDoc</parent>
+        </type>
     </types>
 
     <aspects>

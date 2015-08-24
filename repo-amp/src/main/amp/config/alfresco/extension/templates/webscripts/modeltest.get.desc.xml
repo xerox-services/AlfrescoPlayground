@@ -1,7 +1,7 @@
 <webscript>
-    <shortname>Model test</shortname>
+    <shortname>Model test - whitepaper</shortname>
     <family>Tutorials</family>
-    <description>Creates content of a custom type</description>
+    <description>Creates content of a custom type - a whitepaper</description>
     <url>/modeltest/{documentName}</url>
     <format default="html">extension</format>
     <authentication>user</authentication>

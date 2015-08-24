@@ -1,0 +1,8 @@
+<webscript>
+    <shortname>Model test - catalogue</shortname>
+    <family>Tutorials</family>
+    <description>Creates content of a custom type - a whitepaper catalogue</description>
+    <url>/create-whitepaper-catalogue/{documentName}</url>
+    <format default="html">extension</format>
+    <authentication>user</authentication>
+</webscript>
