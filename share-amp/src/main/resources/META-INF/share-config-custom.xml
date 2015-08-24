@@ -12,12 +12,12 @@
 
     <!-- Form customization for whitepaper -->
 
-    <config evaluator="model-type" condition="my:whitepaper">
+    <config evaluator="model-type" condition="myc:whitepaper">
         <forms>
             <form>
                 <field-visibility>
                     <show id="cm:name" />
-                    <show id="my:product" />
+                    <show id="myc:product" />
                     <show id="cm:title" force="true" />
                     <show id="cm:description" force="true" />
                 </field-visibility>
@@ -26,12 +26,12 @@
     </config>
 
 
-    <config evaluator="node-type" condition="my:whitepaper">
+    <config evaluator="node-type" condition="myc:whitepaper">
         <forms>
             <form>
                 <field-visibility>
                     <show id="cm:name" />
-                    <show id="my:product" />
+                    <show id="myc:product" />
                     <show id="cm:title" force="true" />
                     <show id="cm:description" force="true" />
                 </field-visibility>
@@ -60,8 +60,8 @@
         <types>
             <type name="cm:content">
                 <!-- Custom sub-type added for whitepapers -->
-                <subtype name="my:whitepaper"/>
-                <subtype name="my:doc"/>
+                <subtype name="myc:whitepaper"/>
+                <subtype name="myc:doc"/>
             </type>
 
             <type name="cm:folder">
@@ -99,8 +99,8 @@
                 <aspect name="dp:restrictable" />
 
                 <!-- custom aspects -->
-                <aspect name="my:publishToWeb" />
-                <aspect name="my:clientRelated" />
+                <aspect name="myc:publishToWeb" />
+                <aspect name="myc:clientRelated" />
             </visible>
 
             <!-- Aspects that a user can add. Same as "visible" if left empty -->

@@ -1,4 +1,4 @@
-var contentType = "my:whitepaper";
+var contentType = "myc:whitepaper";
 var documentName = url.templateArgs.documentName;
 
 var document = companyhome.createNode(documentName, contentType);

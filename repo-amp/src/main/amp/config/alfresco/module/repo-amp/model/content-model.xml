@@ -23,5 +23,86 @@
     <!-- ===============================================================================================================
         Constraints, Types, and Aspects go here...
         -->
+    <constraints>
+        <constraint name="myc:productListConstraint" type="LIST">
+            <parameter name="allowedValues">
+                <list>
+                    <value>Foobar Widget</value>
+                    <value>Flux Capacitor</value>
+                    <value>Big Bold App</value>
+                </list>
+            </parameter>
+        </constraint>
+    </constraints>
+
+    <types>
+        <!--  Enterprise-wide generic document type -->
+        <type name="myc:doc">
+            <title>MyCompany Generic Document</title>
+            <parent>cm:content</parent>
+            <associations>
+                <association name="myc:relatedDocuments">
+                    <title>Related Documents</title>
+                    <source>
+                        <mandatory>false</mandatory>
+                        <many>true</many>
+                    </source>
+                    <target>
+                        <class>myc:doc</class>
+                        <mandatory>false</mandatory>
+                        <many>true</many>
+                    </target>
+                </association>
+            </associations>
+            <mandatory-aspects>
+                <aspect>cm:generalclassifiable</aspect>
+            </mandatory-aspects>
+        </type>
+        <type name="myc:marketingDoc">
+            <title>MyCompany Marketing Document</title>
+            <parent>myc:doc</parent>
+            <properties>
+                <property name="myc:product">
+                    <type>d:text</type>
+                    <multiple>true</multiple>
+                    <constraints>
+                        <constraint ref="myc:productListConstraint" />
+                    </constraints>
+                </property>
+            </properties>
+        </type>
+        <type name="myc:whitepaper">
+            <title>MyCompany Whitepaper</title>
+            <parent>myc:marketingDoc</parent>
+        </type>
+    </types>
+
+    <aspects>
+        <aspect name="myc:publishToWeb">
+            <title>MyCompany Website</title>
+            <properties>
+                <property name="myc:publishedDate">
+                    <type>d:date</type>
+                </property>
+                <property name="myc:isActive">
+                    <type>d:boolean</type>
+                    <default>false</default>
+                </property>
+            </properties>
+        </aspect>
+        <aspect name="myc:clientRelated">
+            <title>MyCompany Client Metadata</title>
+            <properties>
+                <property name="myc:clientName">
+                    <type>d:text</type>
+                    <mandatory>true</mandatory>
+                </property>
+                <property name="myc:projectName">
+                    <type>d:text</type>
+                    <mandatory>false</mandatory>
+                </property>
+            </properties>
+        </aspect>
+    </aspects>
 
 </model>

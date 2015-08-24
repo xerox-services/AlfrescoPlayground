@@ -17,6 +17,8 @@
 	limitations under the License.
 -->
 <beans>
+	<!-- These beans may connect webscripts to some backing Java code (probably among other stuff).
+					Note how the tutorial modeltest script doesn't have an entry - it is self-contained. -->
 	<bean id="webscript.helloworld.get"
 		  class="org.example.playground.demoamp.HelloWorldWebScript"
 		  parent="webscript">
