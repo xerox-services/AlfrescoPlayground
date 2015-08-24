@@ -35,7 +35,3 @@ alf_data_dev/h2_data
 alf_data_dev/lucene-indexes
 alf_data_dev/solr4
 alf_data_dev/preprocessor-data
-citeweb-ui/logs
-preprocessor/logs
-citeweb-ui/src/main/webapp/WEB-INF/lib
-citeweb-ui/src/main/webapp/WEB-INF/classes

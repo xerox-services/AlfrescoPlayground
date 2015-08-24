@@ -7,8 +7,8 @@
     <description>This is a sample Alfresco repository AMP project, depended upon by the alfresco WAR aggregator</description>
 
     <parent>
-        <groupId>org.xerox</groupId>
-        <artifactId>citeweb</artifactId>
+        <groupId>org.example</groupId>
+        <artifactId>playground</artifactId>
         <version>1.0-SNAPSHOT</version>
     </parent>
 

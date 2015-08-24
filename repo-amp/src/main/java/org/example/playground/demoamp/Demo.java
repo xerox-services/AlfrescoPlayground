@@ -1,4 +1,4 @@
-package org.xerox.citeweb.demoamp;
+package org.example.playground.demoamp;
 
 /**
  * This class does nothing except dump some output to <i>system.out</i>.

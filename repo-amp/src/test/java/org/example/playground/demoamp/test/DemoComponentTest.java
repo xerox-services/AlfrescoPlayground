@@ -1,9 +1,9 @@
-package org.xerox.citeweb.demoamp.test;
+package org.example.playground.demoamp.test;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 
-import org.xerox.citeweb.demoamp.DemoComponent;
+import org.example.playground.demoamp.DemoComponent;
 import org.alfresco.model.ContentModel;
 import org.alfresco.repo.security.authentication.AuthenticationUtil;
 import org.alfresco.service.cmr.repository.NodeRef;

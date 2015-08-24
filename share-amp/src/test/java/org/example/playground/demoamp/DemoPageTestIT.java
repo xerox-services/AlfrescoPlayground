@@ -12,9 +12,9 @@
  * You should have received a copy of the GNU Lesser General Public License
  * along with Alfresco. If not, see <http://www.gnu.org/licenses/>.
  */
-package org.xerox.citeweb.demoamp;
+package org.example.playground.demoamp;
 
-import org.xerox.citeweb.demoamp.po.DemoPage;
+import org.example.playground.demoamp.po.DemoPage;
 import org.alfresco.po.share.AbstractTest;
 import org.alfresco.po.share.LoginPage;
 import org.alfresco.po.share.PeopleFinderPage;

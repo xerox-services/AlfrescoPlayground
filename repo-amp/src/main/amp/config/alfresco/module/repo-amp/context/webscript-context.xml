@@ -18,7 +18,7 @@
 -->
 <beans>
 	<bean id="webscript.helloworld.get"
-		  class="org.xerox.citeweb.demoamp.HelloWorldWebScript"
+		  class="org.example.playground.demoamp.HelloWorldWebScript"
 		  parent="webscript">
 	</bean>
 </beans>

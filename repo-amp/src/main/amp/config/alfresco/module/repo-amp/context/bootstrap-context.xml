@@ -9,7 +9,7 @@
 
 
     <!-- Registration of new models -->
-    <bean id="org.xerox.citeweb.dictionaryBootstrap" parent="dictionaryModelBootstrap" depends-on="dictionaryBootstrap">
+    <bean id="org.example.playground.dictionaryBootstrap" parent="dictionaryModelBootstrap" depends-on="dictionaryBootstrap">
         <property name="models">
             <list>
                 <value>alfresco/module/${project.artifactId}/model/content-model.xml</value>

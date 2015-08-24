@@ -19,10 +19,10 @@
 <beans>
     
     <!-- A simple class that is initialized by Spring -->
-    <bean id="org.xerox.citeweb.exampleBean" class="org.xerox.citeweb.demoamp.Demo" init-method="init" />
+    <bean id="org.example.playground.exampleBean" class="org.example.playground.demoamp.Demo" init-method="init" />
     
     <!-- A simple module component that will be executed once -->
-    <bean id="org.xerox.citeweb.exampleComponent" class="org.xerox.citeweb.demoamp.DemoComponent" parent="module.baseComponent" >
+    <bean id="org.example.playground.exampleComponent" class="org.example.playground.demoamp.DemoComponent" parent="module.baseComponent" >
         <property name="moduleId" value="${project.artifactId}" />  <!-- See module.properties -->
         <property name="name" value="exampleComponent" />
         <property name="description" value="A demonstration component" />
