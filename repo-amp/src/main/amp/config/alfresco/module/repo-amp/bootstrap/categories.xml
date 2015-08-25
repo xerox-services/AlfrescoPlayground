@@ -1,0 +1,32 @@
+<view:view xmlns:view="http://www.alfresco.org/view/repository/1.0"
+           xmlns:sys="http://www.alfresco.org/model/system/1.0"
+           xmlns:cm="http://www.alfresco.org/model/content/1.0">
+
+    <cm:category>
+        <cm:name>Lifecycle</cm:name>
+        <cm:subcategories>
+            <cm:category>
+                <cm:name>Review</cm:name>
+
+                <!-- Example of another category nested one level deeper
+                <cm:subcategories>
+                    <cm:category>
+                        <cm:name>Deeper category</cm:name>
+                    </cm:category>
+                </cm:subcategories>
+                -->
+
+            </cm:category>
+            <cm:category>
+                <cm:name>Approved</cm:name>
+            </cm:category>
+            <cm:category>
+                <cm:name>Live</cm:name>
+            </cm:category>
+            <cm:category>
+                <cm:name>Discarded</cm:name>
+            </cm:category>
+        </cm:subcategories>
+    </cm:category>
+
+</view:view>
