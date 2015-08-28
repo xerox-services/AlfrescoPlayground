@@ -29,8 +29,8 @@
 
         <!-- The following are default values for data location, Alfresco Community version, and Records Management Module version.
              Uncomment if you need to change (Note. current default version for Enterprise edition is 5.0.1) 
-		  <alfresco.rm.version>2.3</alfresco.rm.version>	 
-			 -->
+        <alfresco.rm.version>2.3</alfresco.rm.version>
+        -->
         <alfresco.version>5.0.1</alfresco.version>
 
         <!-- With the true root trick we can launch from either top level or a sub-module and get the same data dir -->
@@ -41,9 +41,8 @@
             jdbc:h2:${alfresco.data.location}/h2_data/${alfresco.db.name};${alfresco.db.params}
         </alfresco.db.url>
 
-        <!-- This control the root logging level for all apps uncomment and change, defaults to WARN
-            <app.log.root.level>WARN</app.log.root.level>
-        -->
+        <!-- This control the root logging level for all apps uncomment and change, defaults to WARN -->
+        <app.log.root.level>INFO</app.log.root.level>
 
         <!-- Set the enviroment to use, this controls which properties will be picked in src/test/properties
              for embedded run, defaults to the 'local' environment. See SDK Parent POM for more info.
