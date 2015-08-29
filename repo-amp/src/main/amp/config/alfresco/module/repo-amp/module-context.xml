@@ -23,12 +23,13 @@
 -->
 
 <beans xmlns="http://www.springframework.org/schema/beans"
-        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-        xmlns:context="http://www.springframework.org/schema/context"
-        xsi:schemaLocation="http://www.springframework.org/schema/beans
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:util="http://www.springframework.org/schema/util"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
                 http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
                 http://www.springframework.org/schema/context
-                http://www.springframework.org/schema/context/spring-context.xsd">
+                http://www.springframework.org/schema/context/spring-context.xsd http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd">
 
     <!-- This is filtered by Maven at build time, so that module name is single sourced. -->
     <import resource="classpath:alfresco/module/${project.artifactId}/context/bootstrap-context.xml"/>
@@ -39,13 +40,21 @@
             TODO: Prolly not needed, log level was just screwy and making it seem like Categorizer wasn't being hit
     <context:component-scan base-package="org.example.playground.workflow"/> -->
 
+    <!-- Doesn't seem to help, along with depends-on="activitiBeanRegistry" added tp the bean. Does execute though.
+    <util:map id="activitiBeanRegistry" map-class="java.util.HashMap">
+        <entry key="nodeService" value-ref="NodeService" />
+        <entry key="searchService" value-ref="SearchService" />
+        <entry key="categorizer" value-ref="categorizer" />
+    </util:map> -->
+
     <!-- This seemingly works, the services are even populated as per logs, but later they're null again -->
-    <bean id="categorizer" class="org.example.playground.workflow.Categorizer">
+    <bean id="categorizer" class="org.example.playground.workflow.Categorizer" depends-on="activitiBeanRegistry">
+        <!-- Didn't need these after all if just retrieving via ScriptTaskListener.getServiceRegistry() in the class
         <property name="nodeService">
             <ref bean="NodeService"/>
         </property>
         <property name="searchService">
             <ref bean="SearchService"/>
-        </property>
+        </property>-->
     </bean>
 </beans>

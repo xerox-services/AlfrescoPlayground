@@ -4,6 +4,8 @@ import org.activiti.engine.delegate.DelegateTask;
 import org.activiti.engine.delegate.TaskListener;
 import org.alfresco.model.ContentModel;
 import org.alfresco.repo.workflow.activiti.ActivitiScriptNode;
+import org.alfresco.repo.workflow.activiti.tasklistener.ScriptTaskListener;
+import org.alfresco.service.ServiceRegistry;
 import org.alfresco.service.cmr.repository.NodeRef;
 import org.alfresco.service.cmr.repository.NodeService;
 import org.alfresco.service.cmr.repository.StoreRef;
@@ -17,7 +19,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 @Component
-public class Categorizer implements TaskListener{
+public class Categorizer extends ScriptTaskListener {
   private static Logger log = Logger.getLogger(Categorizer.class);
 
   private NodeService nodeService;
@@ -42,11 +44,16 @@ public class Categorizer implements TaskListener{
 
     log.error("Search parameter thing: " + sp);
 
+    ServiceRegistry serviceRegistry = getServiceRegistry();
+    nodeService = serviceRegistry.getNodeService();
+    searchService = serviceRegistry.getSearchService();
+
     ResultSet results = null;
     ArrayList<NodeRef> categories = new ArrayList<>();
     try
     {
       log.error("Going to call the search on searchService: " + searchService);
+      // This fails somehow and jumps down to the finally block leaving results as null
       results = searchService.query(sp);
       for(ResultSetRow row : results)
       {
