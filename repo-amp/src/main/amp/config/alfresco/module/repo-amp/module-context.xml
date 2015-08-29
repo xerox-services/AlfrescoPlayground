@@ -35,6 +35,17 @@
     <import resource="classpath:alfresco/module/${project.artifactId}/context/service-context.xml"/>
     <import resource="classpath:alfresco/module/${project.artifactId}/context/webscript-context.xml"/>
 
-    <!-- Enable component scanning for our demo classes cuz Spring is fancy! TODO: Prolly not needed, log level was just screwy -->
-    <context:component-scan base-package="org.example.playground.workflow"/>
+    <!-- Enable component scanning for our demo classes cuz Spring is fancy!
+            TODO: Prolly not needed, log level was just screwy and making it seem like Categorizer wasn't being hit
+    <context:component-scan base-package="org.example.playground.workflow"/> -->
+
+    <!-- This seemingly works, the services are even populated as per logs, but later they're null again -->
+    <bean id="categorizer" class="org.example.playground.workflow.Categorizer">
+        <property name="nodeService">
+            <ref bean="NodeService"/>
+        </property>
+        <property name="searchService">
+            <ref bean="SearchService"/>
+        </property>
+    </bean>
 </beans>

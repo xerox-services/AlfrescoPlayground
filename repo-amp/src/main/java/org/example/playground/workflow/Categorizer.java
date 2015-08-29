@@ -4,15 +4,12 @@ import org.activiti.engine.delegate.DelegateTask;
 import org.activiti.engine.delegate.TaskListener;
 import org.alfresco.model.ContentModel;
 import org.alfresco.repo.workflow.activiti.ActivitiScriptNode;
-import org.alfresco.service.ServiceRegistry;
 import org.alfresco.service.cmr.repository.NodeRef;
 import org.alfresco.service.cmr.repository.NodeService;
 import org.alfresco.service.cmr.repository.StoreRef;
 import org.alfresco.service.cmr.search.*;
 import org.alfresco.service.namespace.QName;
 import org.apache.log4j.Logger;
-import org.springframework.context.ApplicationContext;
-import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.stereotype.Component;
 
 import java.io.Serializable;
@@ -22,6 +19,9 @@ import java.util.HashMap;
 @Component
 public class Categorizer implements TaskListener{
   private static Logger log = Logger.getLogger(Categorizer.class);
+
+  private NodeService nodeService;
+  private SearchService searchService;
 
   @Override
   public void notify(DelegateTask delegateTask) {
@@ -34,39 +34,20 @@ public class Categorizer implements TaskListener{
     log.warn("TEST WARN!");
     log.debug("TEST DEBUG!");
 
-    // Set up services
-    CategoryService categoryService;
-    NodeService nodeService;
-    ApplicationContext appContext = new ClassPathXmlApplicationContext("alfresco/application-context.xml");
-
-    ServiceRegistry registry = (ServiceRegistry)appContext.getBean(ServiceRegistry.SERVICE_REGISTRY);
-    if (registry.isServiceProvided(ServiceRegistry.CATEGORY_SERVICE))
-    {
-      categoryService = registry.getCategoryService();
-    } else {
-      log.error("Failed to get the category service :-(");
-      return;
-    }
-
-    if (registry.isServiceProvided(ServiceRegistry.NODE_SERVICE))
-    {
-      nodeService = registry.getNodeService();
-    } else {
-      log.error("Failed to get the node service :-(");
-      return;
-    }
-
     // Query for the one whole category we want, need it as a NodeRef
     SearchParameters sp = new SearchParameters();
     sp.addStore(StoreRef.STORE_REF_WORKSPACE_SPACESSTORE);
     sp.setLanguage(SearchService.LANGUAGE_SOLR_ALFRESCO);
     sp.setQuery("PATH:\"/cm:generalclassifiable//cm:Approved/member\"");
 
+    log.error("Search parameter thing: " + sp);
+
     ResultSet results = null;
     ArrayList<NodeRef> categories = new ArrayList<>();
     try
     {
-      results = registry.getSearchService().query(sp);
+      log.error("Going to call the search on searchService: " + searchService);
+      results = searchService.query(sp);
       for(ResultSetRow row : results)
       {
         NodeRef currentNodeRef = row.getNodeRef();
@@ -76,6 +57,7 @@ public class Categorizer implements TaskListener{
     }
     finally
     {
+      log.error("Closing the results");
       if(results != null)
       {
         results.close();
@@ -86,6 +68,7 @@ public class Categorizer implements TaskListener{
     ActivitiScriptNode node = delegateTask.getVariable("bpm_package", ActivitiScriptNode.class);
     NodeRef nodeRef = node.getNodeRef();
     log.error("NodeRef from the flowchart: " + nodeRef);
+    log.error("THe nodeService is " + nodeService);
 
     // Apply the category NodeRef to the flowchart's NodeRef
     if(!nodeService.hasAspect(nodeRef, ContentModel.ASPECT_GEN_CLASSIFIABLE)) {
@@ -97,5 +80,15 @@ public class Categorizer implements TaskListener{
       log.error("Node already was classifiable, so just adding the category");
       nodeService.setProperty(nodeRef, ContentModel.PROP_CATEGORIES, categories);
     }
+  }
+
+  public void setNodeService(NodeService service) {
+    log.error("Setting nodeService to : " + service);
+    nodeService = service;
+  }
+
+  public void setSearchService(SearchService service) {
+    log.error("Setting searchService to : " + service);
+    searchService = service;
   }
 }

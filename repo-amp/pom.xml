@@ -22,11 +22,19 @@
           <scope>provided</scope> is inherited for each of the following;
           for more info, please refer to alfresco-platform-distribution POM -->
     <dependencies>
+
+        <dependency>
+            <groupId>${alfresco.groupId}</groupId>
+            <!-- Switched to enterprise to make dependencies look like CW4 and register better with Spring - needed? -->
+            <artifactId>alfresco-enterprise-repository</artifactId>
+            <version>5.0.1</version>
+        </dependency>
+        <!--
         <dependency>
             <groupId>${alfresco.groupId}</groupId>
             <artifactId>alfresco-repository</artifactId>
         </dependency>
-
+        -->
         <!-- Uncomment if you are using RM (Records Management) module, brings in RM related classes -->
         <!--
         <dependency>
