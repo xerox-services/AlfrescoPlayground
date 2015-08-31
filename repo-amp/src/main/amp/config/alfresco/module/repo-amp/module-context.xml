@@ -40,21 +40,33 @@
             TODO: Prolly not needed, log level was just screwy and making it seem like Categorizer wasn't being hit
     <context:component-scan base-package="org.example.playground.workflow"/> -->
 
-    <!-- Doesn't seem to help, along with depends-on="activitiBeanRegistry" added tp the bean. Does execute though.
+    <!-- Doesn't seem to help, along with depends-on="activitiBeanRegistry" added to the bean. Does execute though.
     <util:map id="activitiBeanRegistry" map-class="java.util.HashMap">
         <entry key="nodeService" value-ref="NodeService" />
         <entry key="searchService" value-ref="SearchService" />
         <entry key="categorizer" value-ref="categorizer" />
     </util:map> -->
 
-    <!-- This seemingly works, the services are even populated as per logs, but later they're null again -->
-    <bean id="categorizer" class="org.example.playground.workflow.Categorizer" depends-on="activitiBeanRegistry">
+    <!-- This works, the services are even populated as per logs, but later from the flowchart they're null again -->
+    <bean id="categorizer" class="org.example.playground.workflow.Categorizer">
         <!-- Didn't need these after all if just retrieving via ScriptTaskListener.getServiceRegistry() in the class
-        <property name="nodeService">
+                ... but then that hit authentication issues?
+                Explanation for casing: https://alfresco123.wordpress.com/2011/12/06/nodeservice-vs-nodeservice/
+                But testing the below beans they result in the same object? -->
+        <property name="nodeServiceInternal">
+            <ref bean="nodeService"/>
+        </property><!--
+        <property name="nodeServiceProxied">
             <ref bean="NodeService"/>
-        </property>
-        <property name="searchService">
+        </property>-->
+        <property name="searchServiceInternal">
+            <ref bean="searchService"/>
+        </property><!--
+        <property name="searchServiceProxied">
             <ref bean="SearchService"/>
+        </property>
+        <property name="categoryService">
+            <ref bean="CategoryService"/>
         </property>-->
     </bean>
 </beans>
