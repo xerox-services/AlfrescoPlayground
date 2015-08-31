@@ -16,16 +16,25 @@
 	limitations under the License.
 	
 -->
-<!DOCTYPE beans PUBLIC '-//SPRING//DTD BEAN//EN'
-        'http://www.springframework.org/dtd/spring-beans.dtd'>
 
 <!-- Beans here are automatically picked up by Alfresco/Spring when starting the module.
         So this is a sort of entry-point for config with more imported via the context dir. -->
-<beans>
+<beans xmlns="http://www.springframework.org/schema/beans"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.springframework.org/schema/beans
+                http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
 
     <!-- This is filtered by Maven at build time, so that module name is single sourced. -->
     <import resource="classpath:alfresco/module/${project.artifactId}/context/bootstrap-context.xml"/>
     <import resource="classpath:alfresco/module/${project.artifactId}/context/service-context.xml"/>
     <import resource="classpath:alfresco/module/${project.artifactId}/context/webscript-context.xml"/>
 
+    <bean id="categorizer" class="org.example.playground.workflow.Categorizer">
+        <property name="nodeService">
+            <ref bean="nodeService"/>
+        </property>
+        <property name="searchService">
+            <ref bean="searchService"/>
+        </property>
+    </bean>
 </beans>
