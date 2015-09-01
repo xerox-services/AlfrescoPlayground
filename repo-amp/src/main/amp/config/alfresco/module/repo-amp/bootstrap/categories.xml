@@ -8,23 +8,32 @@
             <cm:category>
                 <cm:name>Review</cm:name>
 
-                <!-- Example of another category nested one level deeper
+                <!-- Example of nesting one level deeper -->
                 <cm:subcategories>
                     <cm:category>
-                        <cm:name>Deeper category</cm:name>
+                        <cm:name>DevReview</cm:name>
+                    </cm:category>
+                    <cm:category>
+                        <cm:name>QAReview</cm:name>
+                    </cm:category>
+                    <cm:category>
+                        <!-- Purposeful typo added to exercise UNKNOWN. "ReviseTYPO" matched fine -->
+                        <cm:name>RevisTYPOe</cm:name>
                     </cm:category>
                 </cm:subcategories>
-                -->
 
             </cm:category>
             <cm:category>
-                <cm:name>Approved</cm:name>
+                <cm:name>Publish</cm:name>
             </cm:category>
             <cm:category>
                 <cm:name>Live</cm:name>
             </cm:category>
             <cm:category>
                 <cm:name>Discarded</cm:name>
+            </cm:category>
+            <cm:category>
+                <cm:name>UNKNOWN</cm:name>
             </cm:category>
         </cm:subcategories>
     </cm:category>
