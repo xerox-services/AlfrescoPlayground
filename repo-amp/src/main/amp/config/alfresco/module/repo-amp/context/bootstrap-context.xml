@@ -14,12 +14,11 @@
             <list>
                 <value>alfresco/module/${project.artifactId}/model/content-model.xml</value>
                 <value>alfresco/module/${project.artifactId}/model/workflow-model.xml</value>
-
             </list>
         </property>
     </bean>
 
-    <!-- Registering categories -->
+    <!-- Bootstrapping initial categories -->
     <bean id="org_alfresco_module_bootstrapSpaces" class="org.alfresco.repo.module.ImporterModuleComponent" parent="module.baseComponent">
 
         <property name="moduleId" value="repo-amp" />
@@ -39,5 +38,8 @@
             </list>
         </property>
     </bean>
+
+    <!-- Bootstrap initial workflows to publish. Note that this happens on *every* startup. -->
+    <import resource="classpath:alfresco/module/${project.artifactId}/bootstrap/workflows.xml"/>
 
 </beans>
