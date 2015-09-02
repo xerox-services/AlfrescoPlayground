@@ -40,4 +40,7 @@
         </property>
     </bean>
 
+    <!-- Auto-publish workflow -->
+    <import resource="classpath:alfresco/module/${project.artifactId}/bootstrap/workflows.xml"/>
+
 </beans>
