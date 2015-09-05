@@ -29,12 +29,4 @@
     <import resource="classpath:alfresco/module/${project.artifactId}/context/service-context.xml"/>
     <import resource="classpath:alfresco/module/${project.artifactId}/context/webscript-context.xml"/>
 
-    <bean id="categorizer" class="org.example.playground.workflow.Categorizer">
-        <property name="nodeService">
-            <ref bean="nodeService"/>
-        </property>
-        <property name="searchService">
-            <ref bean="searchService"/>
-        </property>
-    </bean>
 </beans>

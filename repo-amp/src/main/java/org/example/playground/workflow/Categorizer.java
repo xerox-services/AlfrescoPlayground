@@ -2,10 +2,14 @@ package org.example.playground.workflow;
 
 import org.activiti.engine.delegate.DelegateTask;
 import org.activiti.engine.delegate.Expression;
+import org.activiti.engine.impl.cfg.ProcessEngineConfigurationImpl;
+import org.activiti.engine.impl.context.Context;
 import org.alfresco.model.ContentModel;
 import org.alfresco.repo.workflow.WorkflowNotificationUtils;
+import org.alfresco.repo.workflow.activiti.ActivitiConstants;
 import org.alfresco.repo.workflow.activiti.ActivitiScriptNode;
 import org.alfresco.repo.workflow.activiti.tasklistener.ScriptTaskListener;
+import org.alfresco.service.ServiceRegistry;
 import org.alfresco.service.cmr.repository.ChildAssociationRef;
 import org.alfresco.service.cmr.repository.NodeRef;
 import org.alfresco.service.cmr.repository.NodeService;
@@ -27,9 +31,8 @@ public class Categorizer extends ScriptTaskListener {
   // TODO: log level for this class is stuck on ERROR for some reason, need to sort that out
   private static Logger log = Logger.getLogger(Categorizer.class);
 
-  // TODO - hack: Need to keep these static or they'll be null by the time the class is called from a workflow
-  private static SearchService searchService;
-  private static NodeService nodeService;
+  private SearchService searchService;
+  private NodeService nodeService;
 
   /** Incoming field from the flowchart task - what category to join */
   private Expression categoryToJoin;
@@ -40,6 +43,13 @@ public class Categorizer extends ScriptTaskListener {
    */
   @Override
   public void notify(DelegateTask delegateTask) {
+    if (searchService == null || nodeService == null) {
+      log.error("Found services to be null, fetching them from the ServiceRegistry");
+      ServiceRegistry registry = getServiceRegistry();
+      searchService = registry.getSearchService();
+      nodeService = registry.getNodeService();
+    }
+
     // TODO: Any better way to get this when I know I picked a fixed value of a String type?
     String category = (String) categoryToJoin.getValue(delegateTask.getExecution());
     log.error("Value of passed in field - the category to set: " + category);
@@ -131,14 +141,22 @@ public class Categorizer extends ScriptTaskListener {
     return null;
   }
 
-  public void setNodeService(NodeService service) {
-    log.error("Setting nodeService to : " + service);
-    nodeService = service;
-  }
-
-  public void setSearchService(SearchService service) {
-    log.error("Setting searchService to : " + service);
-    searchService = service;
+  /**
+   * Utility method for fetching the ServiceRegistry from an Activiti context.
+   * @return the correct ServiceRegistry.
+   */
+  public ServiceRegistry getServiceRegistry() {
+    ProcessEngineConfigurationImpl config = Context.getProcessEngineConfiguration();
+    if (config != null) {
+      // Fetch the registry that is injected in the activiti spring-configuration
+      ServiceRegistry registry = (ServiceRegistry) config.getBeans().get(
+          ActivitiConstants.SERVICE_REGISTRY_BEAN_KEY);
+      if (registry == null) {
+        throw new RuntimeException("Failed to retrieve ServiceRegistry via Activiti's context");
+      }
+      return registry;
+    }
+    throw new IllegalStateException("No ProcessEngineConfiguration found in active context");
   }
 
   /**
